@@ -27,44 +27,44 @@ setr discord:guild 'guild id here'
 
 # Some Example's
 ```lua
-    local Discord = exports["grm-discord"]
+local Discord = exports["grm-discord"]
 
-    ---GetUser
-    ---@param source number
-    ---@param refresh boolean
-    ---@return table|nil
-    Discord:GetUser(source, true)
+---GetUser
+---@param source number
+---@param refresh boolean
+---@return table|nil
+Discord:GetUser(source, true)
 
-    ---GetGuild
-    ---@return table
-    Discord:GetGuild()
+---GetGuild
+---@return table
+Discord:GetGuild()
 
-    ---GetRoleInfo 
-    ---@param role string|string[]
-    ---@return table
-    Discord:GetRoleInfo(source, role)
+---GetRoleInfo 
+---@param role string|string[]
+---@return table
+Discord:GetRoleInfo(source, role)
 
-    ---SetNickname
-    ---@param source number
-    ---@param nickname string
-    ---@return boolean|nil
-    Discord:SetNickname(source, newNickname)
+---SetNickname
+---@param source number
+---@param nickname string
+---@return boolean|nil
+Discord:SetNickname(source, newNickname)
 
-    ---AddRole
-    ---@param source number
-    ---@param role string|string[]
-    ---@return boolean|nil
-    Discord:AddRole(source, role)
+---AddRole
+---@param source number
+---@param role string|string[]
+---@return boolean|nil
+Discord:AddRole(source, role)
 
-    ---RemoveRole
-    ---@param source number
-    ---@param role string|string[]
-    ---@return boolean|nil
-    Discord:RemoveRole(source, role)
+---RemoveRole
+---@param source number
+---@param role string|string[]
+---@return boolean|nil
+Discord:RemoveRole(source, role)
 
-    ---HaveRole
-    ---@param source number
-    ---@param role string|string[]
-    ---@return table|nil
-    Discord:HaveRole(source, role) 
+---HaveRole
+---@param source number
+---@param role string|string[]
+---@return table|nil
+Discord:HaveRole(source, role) 
 ```
