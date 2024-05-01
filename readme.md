@@ -1,6 +1,6 @@
 # grm-discord v2!
 Discord integrations for Fivem
----
+
 # How to install
 - Download the script and drop in the resources folder
 - Open your server.cfg and add this: ensure grm-discord
