@@ -1,6 +1,6 @@
 # grm-discord v2!
 Discord integrations for Fivem
-
+---
 # How to install
 - Download the script and drop in the resources folder
 - Open your server.cfg and add this: ensure grm-discord
@@ -8,8 +8,7 @@ Discord integrations for Fivem
 - Create a new bot and invite in your server
 - Go back to your server.cfg
 - Paste the below with your own bot token & guild id
----
-# Cfg
+
 ```
 setr discord:token 'token here'
 setr discord:guild 'guild id here'
