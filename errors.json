@@ -1,0 +1,7 @@
+{
+    "400": "The request was improperly formatted, or the server couldn\"t understand it..!",
+    "401": "Unauthorized token!",
+    "403": "Your Discord Token is probably wrong or does not have correct permissions!",
+    "404": "Enpoint inexistent!",
+    "429": "Too many requests!"
+}
