@@ -46,17 +46,27 @@ Discord:SetNickname(source, newNickname)
 ---@return boolean|nil
 Discord:BanUser(source, reason)
 
+---KickUser
+---@param source number
+---@param reason string
+---@return boolean|nil
+Discord:KickUser(source, reason)
+
+---TimeoutUser
+---@param source number
+---@param duration string
+---@param reason string
+---@return boolean|nil
+Discord:TimeoutUser(source, duration, reason)
+
+---RemoveTimeoutUser
+---@param source number
+---@return boolean|nil
+Discord:RemoveTimeoutUser(source)
+
 ---GetGuildRoles
 ---@return table
 Discord:GetGuildRoles()
-
-Example:
-
-local roles = Discord:GetGuildRoles()
-for _, role in ipairs(roles) do
-    print("Role Name:", role.name)
-    print("Role ID:", role.id)
-end
 
 ---AddRole
 ---@param source number

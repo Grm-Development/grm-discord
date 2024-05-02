@@ -114,6 +114,80 @@ end
 
 exports("BanUser", Discord.BanUser)
 
+---@param source number
+---@param reason string
+---@return boolean|nil
+function Discord.KickUser(source, reason)
+    local id = Discord.GetUserId(source)
+
+    if not id then return warn(("player.%s does not have a discord account linked!"):format(source)) end
+
+    Discord.Request("PUT", ("guilds/%s/kicks/%s"):format(Guild, id), json.encode({reason = tostring(reason)}))
+
+    Players[id] = nil
+
+    return true
+end
+
+exports("KickUser", Discord.KickUser)
+
+---@param source number
+---@param duration string
+---@param reason string
+---@return boolean|nil
+function Discord.TimeoutUser(source, duration, reason)
+    local id = Discord.GetUserId(source)
+
+    if not id then return warn(("player.%s does not have a discord account linked!"):format(source)) end
+
+    local durations = {
+        ["1m"] = 60,
+        ["5m"] = 5*60,
+        ["10m"] = 10*60,
+        ["1h"] = 60*60,
+        ["1d"] = 24*60*60,
+        ["1w"] = 7*24*60*60
+    }
+
+    local durationSeconds = durations[duration]
+    if not durationSeconds then return warn("Invalid duration specified.") end
+
+    local timeoutEndTime = os.time() + durationSeconds
+    local timeoutData = {
+        communication_disabled_until = os.date("!%Y-%m-%dT%H:%M:%SZ", timeoutEndTime),
+        reason = tostring(reason)
+    }
+
+    local result = Discord.Request("PATCH", ("guilds/%s/members/%s"):format(Guild, id), json.encode(timeoutData))
+    
+    if not result then return warn(("Failed to timeout player.%s"):format(source)) end
+
+    return true
+end
+
+exports("TimeoutUser", Discord.TimeoutUser)
+
+---@param source number
+---@return boolean|nil
+function Discord.RemoveTimeoutUser(source)
+    local id = Discord.GetUserId(source)
+
+    if not id then return warn(("player.%s does not have a discord account linked!"):format(source)) end
+
+    local timeoutData = {
+        communication_disabled_until = false,
+        reason = "Removing timeout"
+    }
+
+    local result = Discord.Request("PATCH", ("guilds/%s/members/%s"):format(Guild, id), json.encode(timeoutData))
+    
+    if not result then return warn(("Failed to remove timeout for player.%s"):format(source)) end
+
+    return true
+end
+
+exports("RemoveTimeoutUser", Discord.RemoveTimeoutUser)
+
 ---@return table
 function Discord.GetGuildRoles()
     local result = Discord.Request("GET", ("guilds/%s/roles"):format(Guild))
