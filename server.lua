@@ -188,6 +188,25 @@ end
 
 exports("RemoveTimeoutUser", Discord.RemoveTimeoutUser)
 
+---@param source number
+---@return boolean|nil
+function Discord.IsPlayerTimeout(source)
+    local id = Discord.GetUserId(source)
+
+    if not id then return warn(("player.%s does not have a discord account linked!"):format(source)) end
+
+    local memberInfo = Discord.Request("GET", ("guilds/%s/members/%s"):format(Guild, id))
+    if not memberInfo then return warn(("Failed to retrieve member information for player.%s"):format(source)) end
+
+    local memberData = json.decode(memberInfo)
+    if not memberData.communication_disabled_until then return warn(("Player.%s is not in timeout"):format(source)) end
+
+    warn(("Player.%s is in timeout until: %s"):format(source, memberData.communication_disabled_until))
+    return true
+end
+
+exports("IsPlayerTimeout", Discord.IsPlayerTimeout)
+
 ---@return table
 function Discord.GetGuildRoles()
     local result = Discord.Request("GET", ("guilds/%s/roles"):format(Guild))
