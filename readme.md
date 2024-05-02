@@ -40,6 +40,16 @@ Discord:GetRoleInfo(source, role)
 ---@return boolean|nil
 Discord:SetNickname(source, newNickname)
 
+---BanUser
+---@param source number
+---@param reason string
+---@return boolean|nil
+Discord:BanUser(source, reason)
+
+---GetGuildRoles
+---@return table
+Discord:GetGuildRoles()
+
 ---AddRole
 ---@param source number
 ---@param role string|string[]
