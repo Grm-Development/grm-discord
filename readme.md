@@ -50,14 +50,6 @@ Discord:BanUser(source, reason)
 ---@return table
 Discord:GetGuildRoles()
 
-Example:
-
-local roles = Discord:GetGuildRoles()
-for _, role in ipairs(roles) do
-    print("Role Name:", role.name)
-    print("Role ID:", role.id)
-end
-
 ---AddRole
 ---@param source number
 ---@param role string|string[]
