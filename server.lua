@@ -190,7 +190,7 @@ exports("RemoveTimeoutUser", Discord.RemoveTimeoutUser)
 
 ---@param source number
 ---@return boolean|nil
-function Discord.IsPlayerTimeout(source)
+function Discord.IsUserTimeout(source)
     local id = Discord.GetUserId(source)
 
     if not id then return warn(("player.%s does not have a discord account linked!"):format(source)) end
@@ -205,7 +205,7 @@ function Discord.IsPlayerTimeout(source)
     return true
 end
 
-exports("IsPlayerTimeout", Discord.IsPlayerTimeout)
+exports("IsUserTimeout", Discord.IsUserTimeout)
 
 ---@return table
 function Discord.GetGuildRoles()

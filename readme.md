@@ -64,10 +64,10 @@ Discord:TimeoutUser(source, duration, reason)
 ---@return boolean|nil
 Discord:RemoveTimeoutUser(source)
 
----IsPlayerTimeout
+---IsUserTimeout
 ---@param source number
 ---@return boolean|nil
-Discord:IsPlayerTimeout(source)
+Discord:IsUserTimeout(source)
 
 ---GetGuildRoles
 ---@return table
