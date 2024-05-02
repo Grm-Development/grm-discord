@@ -98,6 +98,36 @@ end
 exports("SetNickname", Discord.SetNickname)
 
 ---@param source number
+---@param reason string
+---@return boolean|nil
+function Discord.BanUser(source, reason)
+    local id = Discord.GetUserId(source)
+
+    if not id then return warn(("player.%s does not have a discord account linked!"):format(source)) end
+
+    Discord.Request("PUT", ("guilds/%s/bans/%s"):format(Guild, id), json.encode({reason = tostring(reason)}))
+
+    Players[id] = nil
+
+    return true
+end
+
+exports("BanUser", Discord.BanUser)
+
+---@return table
+function Discord.GetGuildRoles()
+    local result = Discord.Request("GET", ("guilds/%s/roles"):format(Guild))
+
+    if not result then return warn(("Failed to retrieve roles from server %s."):format(source, Guild)) end
+
+    result = json.decode(result)
+    
+    return result
+end
+
+exports("GetGuildRoles", Discord.GetGuildRoles)
+
+---@param source number
 ---@param role string|string[]
 ---@return table|nil
 function Discord.HaveRole(source, role)

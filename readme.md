@@ -40,6 +40,24 @@ Discord:GetRoleInfo(source, role)
 ---@return boolean|nil
 Discord:SetNickname(source, newNickname)
 
+---BanUser
+---@param source number
+---@param reason string
+---@return boolean|nil
+Discord:BanUser(source, reason)
+
+---GetGuildRoles
+---@return table
+Discord:GetGuildRoles()
+
+Example:
+
+local roles = Discord:GetGuildRoles()
+for _, role in ipairs(roles) do
+    print("Role Name:", role.name)
+    print("Role ID:", role.id)
+end
+
 ---AddRole
 ---@param source number
 ---@param role string|string[]
