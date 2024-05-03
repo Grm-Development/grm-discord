@@ -46,6 +46,29 @@ Discord:SetNickname(source, newNickname)
 ---@return boolean|nil
 Discord:BanUser(source, reason)
 
+---KickUser
+---@param source number
+---@param reason string
+---@return boolean|nil
+Discord:KickUser(source, reason)
+
+---TimeoutUser
+---@param source number
+---@param duration string
+---@param reason string
+---@return boolean|nil
+Discord:TimeoutUser(source, duration, reason)
+
+---RemoveTimeoutUser
+---@param source number
+---@return boolean|nil
+Discord:RemoveTimeoutUser(source)
+
+---IsUserTimeout
+---@param source number
+---@return boolean|nil
+Discord:IsUserTimeout(source)
+
 ---GetGuildRoles
 ---@return table
 Discord:GetGuildRoles()
