@@ -25,7 +25,7 @@ function Discord.Request(method, endpoint, jsondata)
 
     local c, r, h = table.unpack(Citizen.Await(p))
     
-    if c ~= 200 and c ~= 204 then return error(Errors[c]) end
+    if c ~= 200 and c ~= 204 then return error(Errors[tostring(c)]) end
     
     return r, h
 end
@@ -237,7 +237,7 @@ function Discord.AddRole(source, role)
 
     role = type(role) ~= "table" and { role } or role 
 
-    for _, val in pairs(role) do table.insert(roles, val) end
+    for _, val in pairs(role) do table.insert(roles, tostring(val)) end
 
     Discord.Request('PATCH', ('guilds/%s/members/%s'):format(Guild, id), json.encode({ roles = roles }))
 
@@ -257,7 +257,7 @@ function Discord.RemoveRole(source, role)
     role = type(role) ~= "table" and { role } or role 
 
     for i, v in ipairs(user.roles) do if lib.table.contains(role, v) then table.remove(user.roles, i) end end
-
+    
     Discord.Request('PATCH', ('guilds/%s/members/%s'):format(Guild, user.id), json.encode({ roles = user.roles }))
 
     return true
