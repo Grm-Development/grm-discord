@@ -10,8 +10,8 @@ Discord integrations for Fivem
 - Paste the below with your own bot token & guild id
 
 ```
-setr discord:token 'token here'
-setr discord:guild 'guild id here'
+setr discord:token token here
+setr discord:guild guild id here
 ```
 ---
 
