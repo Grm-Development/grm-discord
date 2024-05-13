@@ -18,7 +18,7 @@ local Data <const> = {
 function Discord.Request(method, endpoint, jsondata)
     local p = promise.new()
 
-    local u = "https://discordapp.com/api/%s"
+    local u = "https://discord.com/api/%s"
     local c = function(...) p:resolve({ ... }) end
 
     PerformHttpRequest(u:format(endpoint), c, method, jsondata or "", Data)
