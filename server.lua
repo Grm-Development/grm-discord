@@ -4,6 +4,7 @@ local Players = {}
 
 local Token <const> = ("Bot %s"):format(GetConvar("discord:token", ""))
 local Errors <const> = json.decode(LoadResourceFile(GetCurrentResourceName(), "errors.json"))
+local Logo <const> = GetConvar("discord:logo", "")
 
 local Data <const> = {
     ["Authorization"] = Token, 
@@ -61,9 +62,6 @@ function Discord.GetUser(source, refresh)
     if not result then return warn(("player.%s is not inside server.%s"):format(source, Guild)) end
 
     result = json.decode(result)
-
-    local file = (result.user.avatar:sub(1, 1) and result.user.avatar:sub(2, 2) == "_") and "gif" or "png"
-    result.user.avatar = ("https://cdn.discordapp.com/avatars/%s/%s.%s"):format(id, result.user.avatar, file)
     
     local d, m, y = result.joined_at:sub(9, 10), result.joined_at:sub(6,7), result.joined_at:sub(1,4)
     result.joined_at = ("%s/%s/%s"):format(d, m, y)
@@ -72,6 +70,9 @@ function Discord.GetUser(source, refresh)
     result.user = nil
 
     for key, val in pairs(user) do result[key] = val end
+
+    local url = "https://cdn.discordapp.com/avatars/%s/%s"
+    result.avatar = result.avatar and url:format(id, result.avatar) or Logo
 
     Players[id] = result
 
